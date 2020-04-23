@@ -22,7 +22,12 @@ RUN groupadd --gid 1000 user \
 
 COPY --from=build /methpipe/bin .
 
-RUN apt-get update && apt-get install -y --no-install-recommends gsl-bin git emacs perl6 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+gsl-bin \
+git \
+emacs \
+perl6 \
+&& rm -rf /var/lib/apt/lists/*
 
 USER user
 
