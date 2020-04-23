@@ -3,13 +3,13 @@ FROM python:3.7 AS build
 RUN apt-get update && apt-get install -y --no-install-recommends \
 gsl-bin \
 libgsl-dev \
-zlib1g-dev
-
-RUN mkdir -p /methpipe/ \
+zlib1g-dev \
+&& mkdir -p /methpipe/ \
 && curl -s http://smithlabresearch.org/downloads/methpipe-3.4.3.tar.bz2 \
-| tar -xj -C /methpipe --strip-components=1
-
-RUN export CPATH=/path_to_my_gsl/include && export LIBRARY_PATH=/path_to_my_gsl/ && export PATH=$PATH:$METHPIPE/bin
+| tar -xj -C /methpipe --strip-components=1 \
+&& export CPATH=/path_to_my_gsl/include \
+&& export LIBRARY_PATH=/path_to_my_gsl/ \
+&& export PATH=$PATH:$METHPIPE/bin
 
 WORKDIR /methpipe
 
